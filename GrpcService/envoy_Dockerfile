@@ -1,0 +1,3 @@
+﻿FROM envoyproxy/envoy-dev
+COPY GrpcService/envoy.yaml /etc/envoy/envoy.yaml
+RUN chmod 777 /etc/envoy/envoy.yaml

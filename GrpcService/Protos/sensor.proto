@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService";
+
+package Sensor;
+
+// The sensor service definition.
+service Sensor {
+  // Sends a listen request
+  rpc ListenSensors (SensorListenRequest) returns (stream SensorDataReply);
+}
+
+enum Condition {
+	EQUAL = 0;
+	NOTEQUAL = 1;
+	GREATHERTHAN = 2;
+	LESSTHAN = 3;
+}
+
+message SensorListenRequest{
+	repeated SensorRequest requests =1;
+}
+// The request message containing the sensor info.
+message SensorRequest {
+	string sensorId = 1;
+	Condition conditon = 2;
+	int32 conditionValue = 3;
+	reserved 5, 9 to 11; //these unique numbers are deprecated, if some client use them, server are going to complain
+	reserved "test", "name"; //these property names are deprecated, if some client use them, server are going to complain
+}
+
+// The response message containing the sensor data.
+message SensorDataReply {
+	string sensorId = 1;
+	string message = 2;
+}

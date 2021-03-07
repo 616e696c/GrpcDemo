@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  grpcservice:
+    image: ${DOCKER_REGISTRY-}grpcservice
+    build:
+      context: .
+      dockerfile: GrpcService/Dockerfile
+    ports:
+      - "9090:80"
+      - "9091:443"
+  envoy:
+     image: ${DOCKER_REGISTRY-}envoy
+     build:
+      context: .
+      dockerfile: GrpcService/envoy_Dockerfile
+     ports:
+      - "8080:8080"

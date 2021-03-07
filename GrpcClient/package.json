@@ -1,0 +1,48 @@
+{
+  "name": "grpc-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "proto": "protoc --proto_path=../GrpcService/Protos --js_out=import_style=commonjs:src/protos_js --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:src/protos_js ../GrpcService/Protos/*.proto"
+  },
+  "description": "GrpcClient",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "google-protobuf": "~3.14.0",
+    "grpc-web": "~1.2.1",
+    "highcharts": "^9.0.1",
+    "highcharts-vue": "^1.3.5",
+    "scrollmonitor": "^1.2.4",
+    "vue": "2.5.17",
+    "vue-class-component": "6.0.0",
+    "vue-property-decorator": "7.0.0",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-object-assign": "^7.12.13",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.13.9",
+    "@types/google-protobuf": "~3.7.0",
+    "@vue/cli-plugin-babel": "3.0.4",
+    "@vue/cli-plugin-typescript": "3.0.4",
+    "@vue/cli-service": "3.0.4",
+    "typescript": "3.1.1",
+    "vue-template-compiler": "2.5.17"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
