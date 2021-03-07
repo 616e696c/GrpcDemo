@@ -9,6 +9,11 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "GrpcClient", "GrpcClient\Gr
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{88571A74-DBF9-47A4-BE6B-4731C09E3F11}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66F53865-FB4A-4055-BB92-5C3ED42CA276}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
