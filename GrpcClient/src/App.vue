@@ -2,11 +2,6 @@
     <div id="app">
         <button v-on:click="listenSensors">Start To Listen Sensors</button>
         <button v-on:click="stopSensors">Stop Listening Sensors</button>
-        <!--<ul id="example-1">
-            <li v-for="message in Messages">
-                {{ message }}
-            </li>
-        </ul>-->
         <div class="grid-container">
             <template v-for="chart in Charts">
                 <chart :id="chart.id"></chart>
@@ -55,6 +50,8 @@
                 stream = SensorDataService.GetData(req).on("data",
                     response => {
                         let sensorId = response.getSensorid();
+                        let timestamp = response.getTimestamp();
+                        //For line chart
                         //store.commit("addPoint", { id: sensorId, point: [store.getters.getXCounter(sensorId), +response.getMessage()] });
                         store.commit("addPoint", { id: sensorId, point: +response.getMessage() });
                     }).on("error", reason => console.log(reason));

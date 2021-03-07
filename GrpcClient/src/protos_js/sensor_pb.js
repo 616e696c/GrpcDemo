@@ -15,6 +15,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.Sensor.Condition', null, global);
 goog.exportSymbol('proto.Sensor.SensorDataReply', null, global);
 goog.exportSymbol('proto.Sensor.SensorListenRequest', null, global);
@@ -465,7 +467,8 @@ proto.Sensor.SensorDataReply.prototype.toObject = function(opt_includeInstance) 
 proto.Sensor.SensorDataReply.toObject = function(includeInstance, msg) {
   var f, obj = {
     sensorid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    message: jspb.Message.getFieldWithDefault(msg, 2, "")
+    message: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -510,6 +513,11 @@ proto.Sensor.SensorDataReply.deserializeBinaryFromReader = function(msg, reader)
       var value = /** @type {string} */ (reader.readString());
       msg.setMessage(value);
       break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTimestamp(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -553,6 +561,14 @@ proto.Sensor.SensorDataReply.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
+  f = message.getTimestamp();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -589,6 +605,43 @@ proto.Sensor.SensorDataReply.prototype.getMessage = function() {
  */
 proto.Sensor.SensorDataReply.prototype.setMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp timeStamp = 3;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.Sensor.SensorDataReply.prototype.getTimestamp = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.Sensor.SensorDataReply} returns this
+*/
+proto.Sensor.SensorDataReply.prototype.setTimestamp = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Sensor.SensorDataReply} returns this
+ */
+proto.Sensor.SensorDataReply.prototype.clearTimestamp = function() {
+  return this.setTimestamp(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Sensor.SensorDataReply.prototype.hasTimestamp = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

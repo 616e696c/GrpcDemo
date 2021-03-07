@@ -15,6 +15,8 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
+
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.Sensor = require('./sensor_pb.js');
 

@@ -1,6 +1,5 @@
 import Vuex from "vuex";
 import Vue from "vue";
-import { theme, stableSort } from 'highcharts';
 
 Vue.use(Vuex);
 
@@ -190,7 +189,7 @@ const store = new Vuex.Store({
                 chart.chartOptions.series[0].data = [
                     payload.point
                 ];
-                //chart.xCounter++;
+                chart.xCounter++;
             }
         }
     },

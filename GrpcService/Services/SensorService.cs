@@ -49,30 +49,14 @@ namespace GrpcService
                         var response = new SensorDataReply
                         {
                             SensorId = sensorRequest.SensorId,
-                            Message = value.ToString()
+                            Message = value.ToString(),
+                            TimeStamp = Timestamp.FromDateTime(now)
                         };
                         await responseStream.WriteAsync(response);
                     }
                 }
                 await Task.Delay(1500);
             }
-            //var rng = new random();
-            //var now = datetime.utcnow;
-            //var i = 0;
-            //while (!context.cancellationtoken.iscancellationrequested && i < 20)
-            //{
-            //    await task.delay(500); // gotta look busy
-
-            //    var response = new sensordatareply
-            //    {
-            //        sensorid = request.sensorid,
-            //        message = "hello " + request.name + " -> " + rng.next(-20, 55) + " - " + timestamp.fromdatetime(now.adddays(i++))
-            //    };
-
-            //    _logger.loginformation("sending hello response");
-
-            //    await responsestream.writeasync(response);
-            //}
         }
     }
 }

@@ -1,5 +1,6 @@
 import * as jspb from 'google-protobuf'
 
+import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
 
 export class SensorListenRequest extends jspb.Message {
@@ -55,6 +56,11 @@ export class SensorDataReply extends jspb.Message {
   getMessage(): string;
   setMessage(value: string): SensorDataReply;
 
+  getTimestamp(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): SensorDataReply;
+  hasTimestamp(): boolean;
+  clearTimestamp(): SensorDataReply;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SensorDataReply.AsObject;
   static toObject(includeInstance: boolean, msg: SensorDataReply): SensorDataReply.AsObject;
@@ -67,6 +73,7 @@ export namespace SensorDataReply {
   export type AsObject = {
     sensorid: string,
     message: string,
+    timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
