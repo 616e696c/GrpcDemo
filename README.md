@@ -56,3 +56,7 @@ After those steps you can run client
 On this PoC, Client creates a request for Eight thousand sensor and loads Highchats Gauge for every sensor. With buttons on the top you can create a stream request or cancel the request and stop the data flow.
 
 > Note: Loading this many chart is a burden for a browser so I added extra control for rendering only charts visible on screen with scroll. This can be helpfull for you if you use Highcharts with many charts or series.
+
+When you run the client you should see something like below:  
+  
+![Screen](screen.png)
