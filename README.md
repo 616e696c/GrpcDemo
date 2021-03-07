@@ -23,14 +23,13 @@ For using grpc with web frameworks we need to use [grpc-web](https://github.com/
 
 In this PoC, both client and server is in the same solution and we can use server's protp files directly. But if you want to change this please read [grpc-web](https://github.com/grpc/grpc-web)'s documentation for protoc commands for web.   
 
-How it works?
-```mermaid
-graph LR
-A[Vue Client] -- HTTP 1 --> B((Envoy Proxy));
-B -- HTTP 2 --> D{.Net Server};
-D -- HTTP 2 --> B;
-B -- HTTP 1 --> A;
-```
+#### How it works?
+
+At the transport layer gRPC uses HTTP/2 for request/response multiplexing by which client and servers can both initiate multiple streams on a single underlying TCP connection. We're able to communicate between services or micro-services over HTTP/2 natively but not all browsers can use HTTP/2, some browsers still uses HTTP/1.1. At this point we wanted to stay at the safe point and decided to use a proxy to convert our packages from HTTP/1 to HTTP/2
+
+![Flow](flow.png)
+
+
 
 ## Quick Start
 
@@ -41,3 +40,19 @@ $ docker-compose build
 $ docker-compose up
 ```
 To shutdown: `docker-compose down`.
+
+For Client, you need to install neccessary npm packages at `package.json` and compile proto file.
+
+From the client's root directory (/GrpcClient) run this command for installing npm packages:  
+```npm
+$ npm install
+```
+For compiling proto files use script named `proto`  defined at `package.json` file.
+
+After those steps you can run client
+
+## Scenario
+
+On this PoC, Client creates a request for Eight thousand sensor and loads Highchats Gauge for every sensor. With buttons on the top you can create a stream request or cancel the request and stop the data flow.
+
+> Note: Loading this many chart is a burden for a browser so I added extra control for rendering only charts visible on screen with scroll. This can be helpfull for you if you use Highcharts with many charts or series.
