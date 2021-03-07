@@ -42,7 +42,6 @@
     <Content Include="src\components\Home.vue" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
-    <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />
