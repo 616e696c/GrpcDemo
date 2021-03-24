@@ -27,7 +27,7 @@
 
 
 
-    let chartCount = 7000;
+    let chartCount = 100;
     let stream: ClientReadableStream<SensorDataReply>;
     @Component({
         components: {
