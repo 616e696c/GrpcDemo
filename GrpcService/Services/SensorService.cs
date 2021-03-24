@@ -18,8 +18,7 @@ namespace GrpcService
 
         public async override Task ListenSensors(SensorListenRequest request, IServerStreamWriter<SensorDataReply> responseStream, ServerCallContext context)
         {
-            var i = 0;
-            while (!context.CancellationToken.IsCancellationRequested && i < 1000)
+            while (!context.CancellationToken.IsCancellationRequested)
             {
                 var rng = new Random();
                 var now = DateTime.UtcNow;
@@ -55,7 +54,7 @@ namespace GrpcService
                         await responseStream.WriteAsync(response);
                     }
                 }
-                await Task.Delay(1500);
+                //await Task.Delay(1500);
             }
         }
     }
