@@ -1,7 +1,7 @@
-syntax = "proto3";
-import "google/protobuf/timestamp.proto";
+syntax = "proto3";// proto version
+import "google/protobuf/timestamp.proto"; //namespace for using google.protobuf.Timestamp type
 
-option csharp_namespace = "GrpcService";
+option csharp_namespace = "GrpcService"; //we use this for creating our class in the given namespace
 
 package Sensor;
 
@@ -11,13 +11,14 @@ service Sensor {
   rpc ListenSensors (SensorListenRequest) returns (stream SensorDataReply);
 }
 
-enum Condition {
+enum Condition { //you can create enums but they must start with 0
 	EQUAL = 0;
 	NOTEQUAL = 1;
 	GREATHERTHAN = 2;
 	LESSTHAN = 3;
 }
 
+//Type definition of the request object
 message SensorListenRequest{
 	repeated SensorRequest requests =1;
 }
