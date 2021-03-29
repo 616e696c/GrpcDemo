@@ -20,7 +20,7 @@ static_resources:
               routes:
               - match: { prefix: "/" }
                 route:
-                  cluster: greeter_service
+                  cluster: sensor_service
                   max_grpc_timeout: 0s
               cors:
                 allow_origin_string_match:
@@ -34,7 +34,7 @@ static_resources:
           - name: envoy.cors
           - name: envoy.router
   clusters:
-  - name: greeter_service
+  - name: sensor_service
     connect_timeout: 0.25s
     type: logical_dns
     http2_protocol_options: {}
@@ -43,7 +43,7 @@ static_resources:
         tcp_keepalive:
           keepalive_time: 300
     load_assignment:
-      cluster_name: greeter_service
+      cluster_name: sensor_service
       endpoints:
       - lb_endpoints:
         - endpoint:

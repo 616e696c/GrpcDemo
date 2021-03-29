@@ -18,12 +18,15 @@ namespace GrpcService
 
         public async override Task ListenSensors(SensorListenRequest request, IServerStreamWriter<SensorDataReply> responseStream, ServerCallContext context)
         {
+            //When client sends a cancel request it triggers CancellationToken
             while (!context.CancellationToken.IsCancellationRequested)
             {
                 var rng = new Random();
                 var now = DateTime.UtcNow;
+                //We can handle multiple sensor request in the same request because of our request model
                 foreach (var sensorRequest in request.Requests)
                 {
+                    //Some random business
                     var value = rng.Next(-20, 250);
                     var satisfiesCondition = false;
                     switch (sensorRequest.Conditon)
@@ -45,16 +48,19 @@ namespace GrpcService
                     }
                     if (satisfiesCondition)
                     {
+                        //Create response data for sensor
                         var response = new SensorDataReply
                         {
                             SensorId = sensorRequest.SensorId,
                             Message = value.ToString(),
                             TimeStamp = Timestamp.FromDateTime(now)
                         };
+                        //Write data to stream
                         await responseStream.WriteAsync(response);
                     }
                 }
-                //await Task.Delay(1500);
+                //if you want some realism
+                //await Task.Delay(500);
             }
         }
     }
